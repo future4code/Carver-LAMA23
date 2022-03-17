@@ -17,8 +17,7 @@ export class UserBusiness {
 
         const hashPassword = await this.hashManager.hash(user.password);
 
-        const userDatabase = new UserDatabase();
-        await userDatabase.createUser(id, user.email, user.name, hashPassword, user.role);
+        await this.userDatabase.createUser(id, user.email, user.name, hashPassword, user.role);
 
         const accessToken = this.authenticator.generateToken({ id, role: user.role });
 
@@ -27,13 +26,11 @@ export class UserBusiness {
 
     async getUserByEmail(user: LoginInputDTO) {
 
-        const userDatabase = new UserDatabase();
-        const userFromDB = await userDatabase.getUserByEmail(user.email);
+        const userFromDB = await this.userDatabase.getUserByEmail(user.email);
 
         const hashCompare = await this.hashManager.compare(user.password, userFromDB.getPassword());
 
-        const authenticator = new Authenticator();
-        const accessToken = authenticator.generateToken({ id: userFromDB.getId(), role: userFromDB.getRole() });
+        const accessToken = this.authenticator.generateToken({ id: userFromDB.getId(), role: userFromDB.getRole() });
 
         if (!hashCompare) {
             throw new Error("Invalid Password!");

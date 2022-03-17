@@ -1,29 +1,28 @@
-import { isExportSpecifier } from "typescript"
 import { UserBusiness } from "../src/business/UserBusiness"
 
 
 
 let idGenerator = { generate: jest.fn() } as any
 
-let hasManager = {
+let hashManager = {
     hash: jest.fn(),
     compare: jest.fn(() => false)
 } as any
 
-let autheticator = {
-    generateToken: jest.fn((data: any) => 'token'),
+let authenticator = {
+    generateToken: jest.fn((data: any) => 'token')
 } as any
 
-let userDataBase = {
+let userDatabase = {
     createUser: jest.fn(),
     getUserByEmail: jest.fn(() => ({}))
 } as any
 
 let userBusiness = new UserBusiness{
     idGenerator,
-    hasManager,
-    autheticator,
-    userDataBase
+    hashManager,
+    authenticator,
+    userDatabase
 
 }
 
