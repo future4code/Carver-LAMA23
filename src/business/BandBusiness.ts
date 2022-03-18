@@ -29,4 +29,16 @@ export class BandBusiness {
             })
         )
     }
+
+    async getBandById(id: string, token: string){
+        if(!id){
+            throw new Error('Id in params is not passed')
+        }
+        if(!token){
+            throw new Error('invalid token')
+        }
+        const showDatabase = new BandDatabase()
+        const result = await showDatabase.getBandById(id)
+        return result
+    }
 }

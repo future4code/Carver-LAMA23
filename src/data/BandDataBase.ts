@@ -14,9 +14,17 @@ export class BandDatabase extends BaseDatabase {
                     responsible: band.getResponsible
                 })
                 .into(BandDatabase.TABLE_NAME)
-        } catch (error) {
+        } catch (error:any) {
             throw new Error(error.sqlMessage || error.message);
         }
     }
-   // public async getBand(id:string, name:string):
+
+    public async getBandById(id:string): Promise <Band> {
+    const result = await this.getConnection()
+      .select("*")
+      .from(BandDatabase.TABLE_NAME)
+      .where({id});
+
+    return Band.toBandModel(result[0])
+    }
 }
