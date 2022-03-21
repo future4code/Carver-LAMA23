@@ -6,25 +6,29 @@ export class BandDatabase extends BaseDatabase {
 
     public async createBand(band: Band): Promise<void> {
         try {
+            const banda = {
+                id: band.getId,
+                music_genre: band.getMusicGenre,
+                name: band.getName,
+                responsible: band.getResponsible
+            }
             await this.getConnection()
-                .insert({
-                    id: band.getId,
-                    name: band.getName,
-                    music_genre: band.getMusicGenre,
-                    responsible: band.getResponsible
-                })
+
+                .insert(banda)
                 .into(BandDatabase.TABLE_NAME)
-        } catch (error:any) {
+        } catch (error) {
+            console.log(error)
+
             throw new Error(error.sqlMessage || error.message);
         }
     }
 
-    public async getBandById(id:string): Promise <Band> {
-    const result = await this.getConnection()
-      .select("*")
-      .from(BandDatabase.TABLE_NAME)
-      .where({id});
+    public async getBandById(id: string): Promise<Band> {
+        const result = await this.getConnection()
+            .select("*")
+            .from(BandDatabase.TABLE_NAME)
+            .where({ id });
 
-    return Band.toBandModel(result[0])
+        return Band.toBandModel(result[0])
     }
 }

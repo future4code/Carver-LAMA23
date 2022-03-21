@@ -40,7 +40,7 @@ export class ShowController {
             const result = await showBusiness.getShowByDate(date, header)
             res.status(200).send({ result });
 
-        } catch (error: any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
     }
