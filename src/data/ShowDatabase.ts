@@ -15,7 +15,7 @@ export class ShowDatabase extends BaseDatabase{
                     band_id: show.getBandId
                 })
                 .into(ShowDatabase.TABLE_NAME)
-        } catch (error:any) {
+        } catch (error) {
             throw new Error(error.sqlMessage || error.message);
         }
     }

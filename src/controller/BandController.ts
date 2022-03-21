@@ -23,7 +23,8 @@ export class BandController {
 
             res.sendStatus(200);
 
-        } catch (error:any) {
+        } catch (error) {
+            console.log(error)
             res.status(400).send({ error: error.message });
         }
         await BaseDatabase.destroyConnection();
@@ -33,7 +34,7 @@ export class BandController {
 
     async getBandById(req: Request, res: Response) {
 
-        const id: any = req.body.id
+        const id: any = req.params
         const header: string = req.headers.authorization as string
     
             const bandBusiness = new BandBusiness(
@@ -47,7 +48,7 @@ export class BandController {
             const result = await bandBusiness.getBandById(id, header)
             
             res.status(200).send({ result });
-        } catch (error:any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
     }

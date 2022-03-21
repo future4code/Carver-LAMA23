@@ -28,7 +28,7 @@ export class UserController {
 
             res.status(201).send({ token });
 
-        } catch (error:any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
 
@@ -48,7 +48,7 @@ export class UserController {
 
             res.status(200).send({ token });
 
-        } catch (error:any) {
+        } catch (error) {
             res.status(400).send({ error: error.message });
         }
 
