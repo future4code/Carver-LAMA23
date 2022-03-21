@@ -6,3 +6,11 @@ Para isso já deixamos algumas tabelas prontas para vocês não precisarem se pr
 
 ### Documentação da API 
 [Clique Aqui](https://documenter.getpostman.com/view/18390857/UVsPPQe6)
+
+### Repositório Heroku
+[Clique Aqui](https://github.com/elianacris/Projeto-LAMA23)
+
+### Participantes
+1- Eliana Cristina de Deus Santos 
+2- Thayna Saad Isquierdo Jorge
+3- Ruana Piber da Rosa 
